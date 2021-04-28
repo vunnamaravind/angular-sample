@@ -2,9 +2,29 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// @ts-ignore
+
+// @ts-ignore
+// @ts-ignore
+// @ts-ignore
+// @ts-ignore
 export const environment = {
-  production: false
+  // @ts-ignore
+  production: false,
+  firebase: {
+    apiKey:  'AIzaSyDZ5c0pHDTUHh4XUzXlf6LMIi-WOXZoiHU',
+    authDomain:  'orange-kart-7743a.firebaseapp.com',
+    projectId: 'orange-kart-7743a',
+    storageBucket: 'orange-kart-7743a.appspot.com',
+    messagingSenderId: '1017481973307',
+    appId: '1:1017481973307:web:88ffafe78055ab3577961e'
+  }
 };
+
+// In other files, import the environment like so:
+
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file

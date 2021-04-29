@@ -18,13 +18,8 @@ export class AuthService {
     const returnUrl =  this.route.snapshot.queryParamMap.get('returnUrl')  || '/';
     localStorage.setItem('returnUrl', returnUrl);
     // @ts-ignore
-    this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
-  }
-
-
-  // tslint:disable-next-line:typedef
-  logout() {
     // @ts-ignore
-    this.afAuth.authState.signOut();
+    this.afAuth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
   }
+
 }

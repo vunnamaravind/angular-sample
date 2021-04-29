@@ -7,13 +7,20 @@ import {CategoryService} from '../../category.service';
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit {
-  categories$;
 
   constructor(categoryServices: CategoryService) {
-    this.categories$ = categoryServices.getCategories();
+    // @ts-ignore
+    this.categories$ = categoryServices.getCategories().snapshotChanges();
   }
+  categories$;
+
+  // tslint:disable-next-line:typedef
+  private product: any;
 
   ngOnInit(): void {
   }
-
+  // tslint:disable-next-line:typedef
+  save() {
+    console.log(this.product);
+  }
 }

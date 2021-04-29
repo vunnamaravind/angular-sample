@@ -12,7 +12,7 @@ import * as firebase from 'firebase/app';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public auth: AuthService) {
+  constructor(public auth: AuthService, private loginService: AuthService) {
   }
 
 
@@ -23,7 +23,9 @@ export class LoginComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  login() {}
+  login() {
+    this.loginService.login();
+  }
 
 }
 

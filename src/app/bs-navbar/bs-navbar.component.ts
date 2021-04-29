@@ -1,9 +1,9 @@
 import {AuthService} from '../auth.service';
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import 'firebase/database';
-
-
-
+import firebase from 'firebase/app';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {Observable} from 'rxjs';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -11,23 +11,19 @@ import 'firebase/database';
   templateUrl: './bs-navbar.component.html',
   styleUrls: ['./bs-navbar.component.css']
 })
-export class BsNavbarComponent implements OnInit {
-  constructor( public  afAuth: AuthService) {
+export class BsNavbarComponent {
+  user$: Observable<firebase.User | null>;
+
+  constructor( public  afAuth: AngularFireAuth) {
+    this.user$ = afAuth.authState;
   }
-  // @ts-ignore
-  authenticationService: any;
+  auth: any;
 
-  // @ts-ignore
-  private auth: any;
-
-  // tslint:disable-next-line:typedef
-  user$: any;
-
-
+  // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit(): void {
   }
   // tslint:disable-next-line:typedef
   logout() {
-    this.auth.logout();
+    this.afAuth.signOut();
   }
 }

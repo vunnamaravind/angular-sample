@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {AngularFireDatabaseModule} from '@angular/fire/database';
- import {AngularFireModule} from '@angular/fire';
+import {AngularFireDatabaseModule, SnapshotAction} from '@angular/fire/database';
+import {AngularFireModule} from '@angular/fire';
 import {Observable} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 
@@ -8,8 +8,7 @@ import {ActivatedRoute} from '@angular/router';
   providedIn: 'root'
 })
 export class CategoryService {
-  private categories$: any
-  ;
+  categories$: Observable<SnapshotAction<undefined>[]>;
 
   constructor(private db: AngularFireDatabaseModule, private route: ActivatedRoute) {
     // @ts-ignore
@@ -18,10 +17,7 @@ export class CategoryService {
 
   // tslint:disable-next-line:typedef
   getCategories() {
-    this.db.list('/categories', {
-      query: {
-        orderByChild: 'name'
-      }
-    });
+    // @ts-ignore
+    return this.db.list('/categories', ref => (ref.orderByChild('name'))).snapshotChanges();
   }
 }

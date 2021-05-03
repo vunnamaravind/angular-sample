@@ -5,6 +5,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { CustomFormsModule } from 'ng2-validation';
 // @ts-ignore
 import { config } from 'process';
 
@@ -26,8 +27,9 @@ import {FormsModule} from '@angular/forms';
 import {environment} from '../environments/environment';
 import {AuthService} from './auth.service';
 import {AuthGuardService} from './auth-guard.service';
-import { ProductFormComponent } from './products/product-form/product-form.component';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
 import {CategoryService} from './category.service';
+import {ProductService} from './product.service';
 
 
 
@@ -43,6 +45,7 @@ const firebaseConfig = {
 };
 
 
+// @ts-ignore
 // @ts-ignore
 @NgModule({
   declarations: [
@@ -65,6 +68,7 @@ const firebaseConfig = {
     AppRoutingModule,
     NgbModule,
     FormsModule,
+    CustomFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // firestore
     AngularFireDatabaseModule,
@@ -74,7 +78,8 @@ const firebaseConfig = {
   providers: [
     AuthService,
     AuthGuardService,
-    CategoryService
+    CategoryService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })

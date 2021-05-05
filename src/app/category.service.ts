@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
-import {AngularFireDatabaseModule, SnapshotAction} from '@angular/fire/database';
+import {
+  AngularFireDatabase,
+  AngularFireDatabaseModule,
+  AngularFireList,
+  PathReference,
+  QueryFn,
+  SnapshotAction
+} from '@angular/fire/database';
 import {AngularFireModule} from '@angular/fire';
 import {Observable} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
@@ -8,7 +15,7 @@ import {ActivatedRoute} from '@angular/router';
   providedIn: 'root'
 })
 export class CategoryService {
-  categories$: Observable<SnapshotAction<undefined>[]>;
+  categories$: <T>(pathOrRef: PathReference, queryFn?: QueryFn) => AngularFireList<T>;
 
   constructor(private db: AngularFireDatabaseModule, private route: ActivatedRoute) {
     // @ts-ignore

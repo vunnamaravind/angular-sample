@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireDatabase, AngularFireDatabaseModule} from '@angular/fire/database';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import {Observable} from 'rxjs';
@@ -45,6 +45,12 @@ export class ProductService {
   update(productId, product) {
     // @ts-ignore
     return this.db.object('/products/' + productId).update(product);
+  }
+
+  // tslint:disable-next-line:typedef
+  delete(productId) {
+    // @ts-ignore
+    return this.db.object('/products/' + productId).remove();
   }
 
 }

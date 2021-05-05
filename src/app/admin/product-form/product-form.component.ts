@@ -14,7 +14,7 @@ import 'rxjs/add/operator/take';
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit {
-  categories$: Observable<SnapshotAction<unknown>[]>;
+  categories$: Observable<SnapshotAction<any>[]>;
   product: {
     imageUrl: any;
     category: any;
@@ -28,11 +28,13 @@ export class ProductFormComponent implements OnInit {
     private route: ActivatedRoute,
     private categoryService: CategoryService,
     private productService: ProductService) {
+    // @ts-ignore
     this.categories$ = categoryService.getCategories().snapshotChanges();
 
 
     this.id = this.route.snapshot.paramMap.get('id');
-    if (this.id) { this.productService.get(this.id).take(1).subscribe(p => this.product = p); }
+    if (this.id) { // @ts-ignore
+      this.productService.get(this.id).take(1).subscribe(p => this.product = p); }
   }
 
   ngOnInit(): void {
@@ -43,6 +45,14 @@ export class ProductFormComponent implements OnInit {
     if (this.id) { this.productService.update(this.id, this.product); }
     else { this.productService.create(this.product); }
 
+    this.router.navigate(['/admin/products']);
+  }
+
+  // tslint:disable-next-line:typedef
+  delete() {
+    if (!confirm('Are you sure to delete the product?')) { return; }
+
+    this.productService.delete(this.id);
     this.router.navigate(['/admin/products']);
   }
 }

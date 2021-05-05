@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule } from '@angular/fire';
-import {AngularFireDatabaseModule} from '@angular/fire/database';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
+import {AngularFireDatabase, AngularFireDatabaseModule} from '@angular/fire/database';
+//  import { AngularFirestoreModule } from '@angular/fire/firestore';
+//  import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { CustomFormsModule } from 'ng2-validation';
 // @ts-ignore
@@ -30,6 +30,8 @@ import {AuthGuardService} from './auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import {CategoryService} from './category.service';
 import {ProductService} from './product.service';
+import {UserService} from './user.service';
+import {AdminAuthGuardService} from './admin-auth-guard.service';
 
 
 
@@ -45,8 +47,6 @@ const firebaseConfig = {
 };
 
 
-// @ts-ignore
-// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,14 +70,16 @@ const firebaseConfig = {
     FormsModule,
     CustomFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule, // firestore
+    //  AngularFirestoreModule, // firestore
     AngularFireDatabaseModule,
     AngularFireAuthModule, // auth
-    AngularFireStorageModule // storage
+    //  AngularFireStorageModule // storage
   ],
   providers: [
     AuthService,
     AuthGuardService,
+    AdminAuthGuardService,
+    UserService,
     CategoryService,
     ProductService
   ],

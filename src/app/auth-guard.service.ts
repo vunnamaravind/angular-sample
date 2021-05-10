@@ -4,7 +4,6 @@ import {AuthService} from './auth.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-// @ts-ignore
 @Injectable({
   providedIn: 'root'
 })
@@ -16,10 +15,9 @@ export class AuthGuardService implements CanActivate{
   // @ts-ignore
   // tslint:disable-next-line:typedef
   canActivate(route, state: RouterStateSnapshot) {
-    const map1 = this.auth.user$.map(user => {
+    return this.auth.user$.map(user => {
       if (user) {  return true; }
 
-      // @ts-ignore
       this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
       return false;
     });

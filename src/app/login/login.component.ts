@@ -11,7 +11,7 @@ import * as firebase from 'firebase/app';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public auth: AuthService, private loginService: AuthService) {
+  constructor(public afAuth: AuthService, private loginService: AuthService) {
   }
 
 

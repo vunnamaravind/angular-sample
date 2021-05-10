@@ -7,7 +7,6 @@ import {Observable} from 'rxjs';
 import {AppUser} from '../model/app-user';
 import {AngularFireAuthGuard} from '@angular/fire/auth-guard';
 
-// @ts-ignore
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'bs-navbar',
@@ -18,12 +17,9 @@ import {AngularFireAuthGuard} from '@angular/fire/auth-guard';
 export class BsNavbarComponent {
   appUser: AppUser;
 
-  // @ts-ignore
   constructor( private  auth: AuthService) {
-    this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
+    auth.appUser$.subscribe(appUser => this.appUser = appUser);
   }
-  // @ts-ignore
-  auth: any;
 
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit(): void {

@@ -19,6 +19,7 @@ class AppError {
   providedIn: 'root'
 })
 export class ProductService {
+  products: Observable<any[]>;
 
   constructor(private db: AngularFireDatabaseModule) { }
 
@@ -31,25 +32,21 @@ export class ProductService {
 
   // tslint:disable-next-line:typedef
   getAll() {
-    // @ts-ignore
     return this.db.list('/products');
   }
 
   // tslint:disable-next-line:typedef
   get(productId) {
-    // @ts-ignore
     return this.db.object('/products' + productId);
   }
 
   // tslint:disable-next-line:typedef
   update(productId, product) {
-    // @ts-ignore
     return this.db.object('/products/' + productId).update(product);
   }
 
   // tslint:disable-next-line:typedef
   delete(productId) {
-    // @ts-ignore
     return this.db.object('/products/' + productId).remove();
   }
 

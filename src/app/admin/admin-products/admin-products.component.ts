@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductService} from '../../product.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-admin-products',
@@ -7,7 +8,9 @@ import {ProductService} from '../../product.service';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent implements OnInit {
-  products$: any;
+  products$: { title: string }[];
+  filteredProducts: any[];
+  subscription: Subscription;
 
   constructor(private productService: ProductService) {
     this.products$ = this.productService.getAll();
@@ -16,7 +19,4 @@ export class AdminProductsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  filter(query: string) {
-    
-  }
 }

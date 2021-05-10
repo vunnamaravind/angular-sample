@@ -4,12 +4,8 @@
 
 // @ts-ignore
 
-// @ts-ignore
-// @ts-ignore
-// @ts-ignore
-// @ts-ignore
+
 export const environment = {
-  // @ts-ignore
   production: false,
   firebase: {
     apiKey:  'AIzaSyDZ5c0pHDTUHh4XUzXlf6LMIi-WOXZoiHU',

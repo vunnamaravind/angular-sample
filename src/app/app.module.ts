@@ -47,6 +47,8 @@ const firebaseConfig = {
 };
 
 
+// @ts-ignore
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +71,7 @@ const firebaseConfig = {
     NgbModule,
     FormsModule,
     CustomFormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase, firebaseConfig),
     //  AngularFirestoreModule, // firestore
     AngularFireDatabaseModule,
     AngularFireAuthModule, // auth
@@ -78,6 +80,7 @@ const firebaseConfig = {
   providers: [
     AuthService,
     AuthGuardService,
+    AngularFireDatabaseModule,
     AdminAuthGuardService,
     UserService,
     CategoryService,
